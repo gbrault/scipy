@@ -1,2 +1,2 @@
 # scipy
-a docker file for scipy
+a docker file for JoD scipy
