@@ -11,4 +11,5 @@ RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER $NB_UID
 
 ENTRYPOINT ["tini", "--"]
-CMD ["/opt/conda/bin/supervisord -n -c /home/jovyan/supervisord.conf"]
+# CMD ["/opt/conda/bin/supervisord -n -c /home/jovyan/supervisord.conf"]
+CMD [ "/bin/bash" ]
