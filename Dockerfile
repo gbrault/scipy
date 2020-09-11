@@ -2,6 +2,7 @@ from jupyter/scipy-notebook
 
 COPY ./requirements.txt /home/jovyan/
 RUN pip install -r /home/jovyan/requirements.txt
+pip install git+https://github.com/coderanger/supervisor-stdout.git
 COPY supervisord.conf /home/jovyan/supervisord.conf
 COPY monitor.py /home/jovyan/
 
