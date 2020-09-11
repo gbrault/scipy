@@ -9,8 +9,8 @@ USER root
 RUN usermod -aG sudo $NB_USER
 RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER $NB_UID
-RUN ls /opt/conda/bin/ -al
+# RUN ls /opt/conda/bin/ -al
 
 ENTRYPOINT ["tini", "--"]
-# CMD ["/opt/conda/bin/supervisord -n -c /home/jovyan/supervisord.conf"]
-CMD [ "start-notebook.sh" ]
+CMD ["/opt/conda/bin/supervisord", "-n", "-c", "/home/jovyan/supervisord.conf"]
+# CMD [ "start-notebook.sh" ]
