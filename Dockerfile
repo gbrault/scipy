@@ -10,5 +10,5 @@ RUN usermod -aG sudo $NB_USER
 RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER $NB_UID
 
-ENTRYPOINT ["/tini", "--"]
+ENTRYPOINT ["tini", "--"]
 CMD ["supervisord -n -c /home/jovyan/supervisord.conf"]
