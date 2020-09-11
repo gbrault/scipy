@@ -12,4 +12,4 @@ USER $NB_UID
 
 ENTRYPOINT ["tini", "--"]
 # CMD ["/opt/conda/bin/supervisord -n -c /home/jovyan/supervisord.conf"]
-CMD [ "/bin/bash" ]
+CMD [ "start-notebook.sh" ]
