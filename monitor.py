@@ -35,7 +35,7 @@ while True:
     timestamp = datetime.datetime.now().strftime('%s')
     tokens = get_tokens()
     if jod_url is not None:
-        requests.get(jod_url+f"&token={token}&timestamp={timestamp}")
+        requests.get(jod_url+f"&tokens={tokens}&timestamp={timestamp}")
     else:
         print("JoD monitor not ready to start!")
         print("Check JOD_URL, JOD_SLEEP environment variables")
