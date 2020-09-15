@@ -26,10 +26,12 @@ def get_tokens():
 
 jod_url = os.getenv("JOD_URL", None)
 sleep = os.getenv("JOD_SLEEP", f"{60*1000}")  # defaults to 60 seconds
-sleep = int(sleep)
+sleep = int(sleep)                                
 tokens = get_tokens()
 print(f"Jupyter tokens: {tokens}", flush=True)
-
+jod_git_url = os.getenv("JOD_GIT_URL", None)
+if jod_git_url is not None:
+    os.system(f"git -C '/home/jovyan/work' clone {jod_git_url}")
 # Loop forever
 while True:
     timestamp = datetime.datetime.now().strftime('%s')
