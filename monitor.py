@@ -25,7 +25,7 @@ def get_tokens():
     return tokens
 
 jod_url = os.getenv("JOD_URL", None)
-sleep = os.getenv("JOD_SLEEP", f"{60*1000}")  # defaults to 60 seconds
+sleep = os.getenv("JOD_SLEEP", f"{60*10}")  # defaults to 10 minutes = 60*10 seconds
 sleep = int(sleep)                                
 tokens = get_tokens()
 print(f"Jupyter tokens: {tokens}", flush=True)
