@@ -15,12 +15,12 @@ def get_tokens():
                                  f"http://127.0.0.1:{server['port']}/api/status?token={server['token']}")
             if r.status_code == 200:
                 rjson = r.json()
-                tokens[] = {"port": server['port'],
-                            "token": server['token'],
-                            "last_activity": rjson['last_activity'],
-                            "started": rjson['started']}
+                tokens.append({"port": server['port'],
+                               "token": server['token'],
+                               "last_activity": rjson['last_activity'],
+                               "started": rjson['started']})
             else:
-                tokens[] = {"port": server['port'], "token": server['token']}
+                tokens.append({"port": server['port'], "token": server['token']})
     tokens = json.dumps(tokens)
     return tokens
 
