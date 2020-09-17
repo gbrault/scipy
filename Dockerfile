@@ -6,6 +6,11 @@ RUN pip install -r /home/jovyan/requirements.txt
 COPY supervisord.conf /home/jovyan/supervisord.conf
 COPY monitor.py /home/jovyan/
 
+RUN echo "JOD_URL=${JOD_URL}" > /home/jovyan/.env & \
+    echo "JOD_SLEEP=${JOD_SLEEP}" >> /home/jovyan/.env & \
+    echo "JOD_GIT_URL=${JOD_GIT_URL}" >> /home/jovyan/.env & \
+    echo "JOD_AK=${JOD_AK}" >> /home/jovyan/.env
+
 USER root
 RUN apt update -yq
 # needed for latex in matplotlib
