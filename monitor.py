@@ -5,6 +5,8 @@ import time
 import requests
 import datetime
 import json
+from dotenv import load_dotenv
+load_dotenv()
 
 def get_tokens():
     tokens = []
