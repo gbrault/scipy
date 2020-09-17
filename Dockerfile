@@ -4,8 +4,8 @@ COPY ./requirements.txt /home/jovyan/
 RUN pip install -r /home/jovyan/requirements.txt
 
 COPY supervisord.conf /home/jovyan/supervisord.conf
-COPY monitor.py /home/jovyan/
-COPY start.sh /home/jovyan
+COPY ./monitor.py /home/jovyan/monitor.py
+COPY ./start.sh /home/jovyan/start.sh
 
 USER root
 RUN apt update -yq
