@@ -6,7 +6,7 @@ import requests
 import datetime
 import json
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(dotenv_path='/home/jovyan/.env')
 
 def get_tokens():
     tokens = []
