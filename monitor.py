@@ -36,8 +36,9 @@ if jod_git_url is not None:
 while True:
     timestamp = datetime.datetime.now().strftime('%s')
     tokens = get_tokens()
+    jsondata = {"tokens": tokens, "timestamp": timestamp}
     if jod_url is not None:
-        requests.get(jod_url+f"&tokens={tokens}&timestamp={timestamp}")
+        requests.post(jod_url, json=jsondata)
     else:
         print("JoD monitor not ready to start!")
         print("Check JOD_URL, JOD_SLEEP environment variables")
