@@ -16,7 +16,11 @@ RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN chmod +x /home/jovyan/start.sh
 RUN chown jovyan:users /home/jovyan/start.sh
 USER $NB_UID
-# RUN ls /opt/conda/bin/ -al
+RUN pip install future numpy matplotlib ipympl ipywidgets scipy
+RUN pip install git+https://github.com/pycontribs/ruyaml.git
+RUN pip install git+https://github.com/gbrault/jupytersketcher
+RUN jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
+RUN jupyter lab build --dev-build=False --minimize=False
 
 ENTRYPOINT ["tini", "--"]
 CMD ["/opt/conda/bin/supervisord", "-n", "-c", "/home/jovyan/supervisord.conf"]
