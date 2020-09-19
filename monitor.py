@@ -12,7 +12,6 @@ import datetime
 import pytz
 
 last_activity = -1
-utc=pytz.UTC
 
 def get_tokens():
     global last_activity
@@ -50,7 +49,7 @@ if jod_git_url is not None:
 while True:
     timestamp = datetime.datetime.now(pytz.utc).isoformat()
     tokens = get_tokens()
-    if last_activity == -1 or (utc.localize(datetime.datetime.now()) - last_activity) > datetime.timedelta(seconds=sleep):
+    if last_activity == -1 or (datetime.datetime.now(pytz.utc) - last_activity) > datetime.timedelta(seconds=sleep):
         os.system("sudo kill 1")
         # Terminate the container    
     jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
