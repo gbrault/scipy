@@ -32,13 +32,15 @@ tokens = get_tokens()
 print(f"Jupyter tokens: {json.dumps(tokens)}", flush=True)
 jod_git_url = os.getenv("JOD_GIT_URL", None)
 jod_ak = os.getenv("JOD_AK", None)
+jod_user = os.getenv("JOD_USER", None)
+jod_product = os.getenv("JOD_PRODUCT", None)
 if jod_git_url is not None:
     os.system(f"git -C '/home/jovyan/work' clone {jod_git_url}")
 # Loop forever
 while True:
     timestamp = datetime.datetime.now().strftime('%s')
     tokens = get_tokens()
-    jsondata = {"ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
+    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
     if jod_url is not None:
         requests.post(jod_url, json=jsondata)
     else:
