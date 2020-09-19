@@ -9,8 +9,10 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path='/home/jovyan/.env')
 import dateutil.parser
 import datetime
+import pytz
 
 last_activity = -1
+utc=pytz.UTC
 
 def get_tokens():
     global last_activity
@@ -27,7 +29,7 @@ def get_tokens():
                                "token": server['token'],
                                "last_activity": rjson['last_activity'],
                                "started": rjson['started']})
-                last_activity = dateutil.parser.parse(rjson['last_activity'])
+                last_activity = utc.localize(dateutil.parser.parse(rjson['last_activity']))
             else:
                 tokens.append({"port": server['port'], "token": server['token']})
     return tokens
@@ -48,7 +50,7 @@ if jod_git_url is not None:
 while True:
     timestamp = datetime.datetime.now().strftime('%s')
     tokens = get_tokens()
-    if last_activity == -1 or (datetime.datetime.now() - last_activity) > datetime.timedelta(seconds=sleep):
+    if last_activity == -1 or (utc.localize(datetime.datetime.now()) - last_activity) > datetime.timedelta(seconds=sleep):
         os.system("sudo kill 1")
         # Terminate the container    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
     if jod_url is not None:
