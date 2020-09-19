@@ -19,7 +19,7 @@ USER $NB_UID
 RUN pip install future numpy matplotlib ipympl ipywidgets scipy
 RUN pip install git+https://github.com/pycontribs/ruyaml.git
 RUN pip install git+https://github.com/gbrault/jupytersketcher
-RUN jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
+RUN jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager jupyter-matplotlib  @jupyter-voila/jupyterlab-preview
 RUN jupyter lab build --dev-build=False --minimize=False
 
 ENTRYPOINT ["tini", "--"]
