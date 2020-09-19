@@ -36,9 +36,7 @@ jod_url = os.getenv("JOD_URL", None)
 sleep = os.getenv("JOD_SLEEP", f"{60*10}")  # defaults to 10 minutes = 60*10 seconds
 sleep = int(sleep)                                
 tokens = get_tokens()
-if last_activity == -1 or datetime.datetime.now() > last_activity + datetime.timedelta(seconds=sleep):
-    os.system("sudo kill 1")
-    # Terminate the container
+
 print(f"Jupyter tokens: {json.dumps(tokens)}", flush=True)
 jod_git_url = os.getenv("JOD_GIT_URL", None)
 jod_ak = os.getenv("JOD_AK", None)
@@ -50,7 +48,9 @@ if jod_git_url is not None:
 while True:
     timestamp = datetime.datetime.now().strftime('%s')
     tokens = get_tokens()
-    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
+    if last_activity == -1 or datetime.datetime.now() > last_activity + datetime.timedelta(seconds=sleep):
+        os.system("sudo kill 1")
+        # Terminate the container    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
     if jod_url is not None:
         requests.post(jod_url, json=jsondata)
     else:
