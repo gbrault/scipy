@@ -29,7 +29,7 @@ def get_tokens():
                                "token": server['token'],
                                "last_activity": rjson['last_activity'],
                                "started": rjson['started']})
-                last_activity = utc.localize(dateutil.parser.parse(rjson['last_activity']))
+                last_activity = dateutil.parser.parse(rjson['last_activity'])
             else:
                 tokens.append({"port": server['port'], "token": server['token']})
     return tokens
