@@ -52,7 +52,8 @@ while True:
     tokens = get_tokens()
     if last_activity == -1 or (utc.localize(datetime.datetime.now()) - last_activity) > datetime.timedelta(seconds=sleep):
         os.system("sudo kill 1")
-        # Terminate the container    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
+        # Terminate the container    
+    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
     if jod_url is not None:
         requests.post(jod_url, json=jsondata)
     else:
