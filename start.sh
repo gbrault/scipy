@@ -3,6 +3,8 @@ echo "JOD_URL=$JOD_URL" > /home/jovyan/.env
 echo "JOD_SLEEP=$JOD_SLEEP" >> /home/jovyan/.env
 echo "JOD_GIT_URL=$JOD_GIT_URL" >> /home/jovyan/.env
 echo "JOD_AK=$JOD_AK" >> /home/jovyan/.env
+echo "JOD_USER=$JOD_USER" >> /home/jovyan/.env
+echo "JOD_PRODUCT=$JOD_PRODUCT" >> /home/jovyan/.env
 chown jovyan:users /home/jovyan/.env
 HERE
 cd /home/jovyan
