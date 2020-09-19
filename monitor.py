@@ -48,7 +48,7 @@ if jod_git_url is not None:
     os.system(f"git -C '/home/jovyan/work' clone {jod_git_url}")
 # Loop forever
 while True:
-    timestamp = datetime.datetime.now().strftime('%s')
+    timestamp = datetime.datetime.now(pytz.utc).isoformat()
     tokens = get_tokens()
     if last_activity == -1 or (utc.localize(datetime.datetime.now()) - last_activity) > datetime.timedelta(seconds=sleep):
         os.system("sudo kill 1")
