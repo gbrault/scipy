@@ -45,6 +45,7 @@ jod_user = os.getenv("JOD_USER", None)
 jod_product = os.getenv("JOD_PRODUCT", None)
 if jod_git_url is not None:
     os.system(f"git -C '/home/jovyan/work' clone {jod_git_url}")
+start = True
 # Loop forever
 while True:
     timestamp = datetime.datetime.now(pytz.utc).isoformat()
@@ -52,7 +53,8 @@ while True:
     if last_activity == -1 or (datetime.datetime.now(pytz.utc) - last_activity) > datetime.timedelta(seconds=sleep):
         os.system("sudo kill 1")
         # Terminate the container    
-    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp}
+    jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp, "start": start}
+    start = False
     if jod_url is not None:
         requests.post(jod_url, json=jsondata)
     else:
