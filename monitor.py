@@ -56,7 +56,12 @@ while True:
     jsondata = {"user": jod_user, "product": jod_product, "ak": jod_ak, "tokens": tokens, "timestamp": timestamp, "start": start}
     start = False
     if jod_url is not None:
-        requests.post(jod_url, json=jsondata)
+        r = requests.post(jod_url, json=jsondata)
+        if r.status_code == 200:
+            status = r.json()
+            if (status['remaining_units'] <= 0):
+                # all units are consummed: stop the container
+                os.system("sudo kill 1")
     else:
         print("JoD monitor not ready to start!")
         print("Check JOD_URL, JOD_SLEEP environment variables")
